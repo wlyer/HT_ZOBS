@@ -1,0 +1,2 @@
+export const PURVIEWLIST = 'PURVIEWLIST';
+export const PURVIEWINFO = 'PURVIEWINFO';
