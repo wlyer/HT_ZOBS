@@ -5,14 +5,15 @@ let user = sessionStorage.getItem('user')?JSON.parse(sessionStorage.getItem('use
 var api = axios.create({
     headers: {
     	'user_id':user.userCode,
-    	'content-type': 'application/json;charset=utf-8'
+    	'content-type': 'application/json;charset=utf-8',
+    	'token':user.token,
     },
-    baseURL:`${Host}`,
+   // baseURL:`${Host}`,
 });
 export function post(url, params) {
 	//let loadingInstance = Loading.service({ fullscreen: true,text:'拼命加载中' });
     return new Promise((resolve, reject) => {
-        api.post(url, params)
+        api.post('/api/'+url, params)
         .then(response => {
             resolve(response.data);
             //延迟加载
@@ -30,7 +31,7 @@ export function post(url, params) {
 export function get(url, params) {
 	//let loadingInstance = Loading.service({ fullscreen: true,text:'拼命加载中' });
 	return new Promise((resolve, reject) => {
-        api.get(url, {params: params})
+        api.get('/api/'+url, {params: params})
         .then(response => {
             resolve(response.data);
          	//延迟加载
@@ -48,7 +49,7 @@ export function get(url, params) {
 export function del(url, params) {
 	//let loadingInstance = Loading.service({ fullscreen: true,text:'拼命加载中' });
 	return new Promise((resolve, reject) => {
-        api.delete(url, {params: params})
+        api.delete('/api/'+url, {params: params})
         .then(response => {
             resolve(response.data);
          	//延迟加载
